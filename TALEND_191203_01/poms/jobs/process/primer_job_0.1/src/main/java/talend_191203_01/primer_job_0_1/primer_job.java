@@ -1,5 +1,5 @@
 
-package talend_191203_01.segundo_job_0_1;
+package talend_191203_01.primer_job_0_1;
 
 import routines.Numeric;
 import routines.DataOperation;
@@ -30,18 +30,18 @@ import java.util.Comparator;
 @SuppressWarnings("unused")
 
 /**
- * Job: Segundo_Job Purpose: Segundo_Job<br>
- * Description: Segundo_Job <br>
+ * Job: primer_job Purpose: primer_job<br>
+ * Description: primer_job <br>
  * 
  * @author alberto.vadillo.munoz@devoteam.com
  * @version 7.2.1.20190909_1200_patch
  * @status
  */
-public class Segundo_Job implements TalendJob {
+public class primer_job implements TalendJob {
 	static {
-		System.setProperty("TalendJob.log", "Segundo_Job.log");
+		System.setProperty("TalendJob.log", "primer_job.log");
 	}
-	private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(Segundo_Job.class);
+	private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(primer_job.class);
 
 	protected static void logIgnoredError(String message, Throwable cause) {
 		log.error(message, cause);
@@ -116,7 +116,7 @@ public class Segundo_Job implements TalendJob {
 	}
 
 	private final String jobVersion = "0.1";
-	private final String jobName = "Segundo_Job";
+	private final String jobName = "primer_job";
 	private final String projectName = "TALEND_191203_01";
 	public Integer errorCode = null;
 	private String currentComponent = "";
@@ -146,7 +146,7 @@ public class Segundo_Job implements TalendJob {
 		globalMap.put(KEY_DB_DATASOURCES_RAW, new java.util.HashMap<String, javax.sql.DataSource>(dataSources));
 	}
 
-	JobStructureCatcherUtils talendJobLog = new JobStructureCatcherUtils(jobName, "_6ErwIBXEEeqNLrLq-fFBRw", "0.1");
+	JobStructureCatcherUtils talendJobLog = new JobStructureCatcherUtils(jobName, "_Ok-2UBXDEeqWuJ1I3Wo1qQ", "0.1");
 	org.talend.job.audit.JobAuditLogger auditLogger_talendJobLog = null;
 
 	private final java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
@@ -229,14 +229,14 @@ public class Segundo_Job implements TalendJob {
 				} else {
 					e.printStackTrace();
 					e.printStackTrace(errorMessagePS);
-					Segundo_Job.this.exception = e;
+					primer_job.this.exception = e;
 				}
 			}
 			if (!(e instanceof TalendException)) {
 				try {
 					for (java.lang.reflect.Method m : this.getClass().getEnclosingClass().getMethods()) {
 						if (m.getName().compareTo(currentComponent + "_error") == 0) {
-							m.invoke(Segundo_Job.this, new Object[] { e, currentComponent, globalMap });
+							m.invoke(primer_job.this, new Object[] { e, currentComponent, globalMap });
 							break;
 						}
 					}
@@ -250,14 +250,14 @@ public class Segundo_Job implements TalendJob {
 		}
 	}
 
-	public void tFileInputDelimited_1_error(Exception exception, String errorComponent,
+	public void tFixedFlowInput_1_error(Exception exception, String errorComponent,
 			final java.util.Map<String, Object> globalMap) throws TalendException {
 
 		end_Hash.put(errorComponent, System.currentTimeMillis());
 
 		status = "failure";
 
-		tFileInputDelimited_1_onSubJobError(exception, errorComponent, globalMap);
+		tFixedFlowInput_1_onSubJobError(exception, errorComponent, globalMap);
 	}
 
 	public void tLogRow_1_error(Exception exception, String errorComponent,
@@ -267,7 +267,7 @@ public class Segundo_Job implements TalendJob {
 
 		status = "failure";
 
-		tFileInputDelimited_1_onSubJobError(exception, errorComponent, globalMap);
+		tFixedFlowInput_1_onSubJobError(exception, errorComponent, globalMap);
 	}
 
 	public void talendJobLog_error(Exception exception, String errorComponent,
@@ -280,7 +280,7 @@ public class Segundo_Job implements TalendJob {
 		talendJobLog_onSubJobError(exception, errorComponent, globalMap);
 	}
 
-	public void tFileInputDelimited_1_onSubJobError(Exception exception, String errorComponent,
+	public void tFixedFlowInput_1_onSubJobError(Exception exception, String errorComponent,
 			final java.util.Map<String, Object> globalMap) throws TalendException {
 
 		resumeUtil.addLog("SYSTEM_LOG", "NODE:" + errorComponent, "", Thread.currentThread().getId() + "", "FATAL", "",
@@ -297,40 +297,13 @@ public class Segundo_Job implements TalendJob {
 	}
 
 	public static class row1Struct implements routines.system.IPersistableRow<row1Struct> {
-		final static byte[] commonByteArrayLock_TALEND_191203_01_Segundo_Job = new byte[0];
-		static byte[] commonByteArray_TALEND_191203_01_Segundo_Job = new byte[0];
+		final static byte[] commonByteArrayLock_TALEND_191203_01_primer_job = new byte[0];
+		static byte[] commonByteArray_TALEND_191203_01_primer_job = new byte[0];
 
-		public Integer GenreId;
+		public String mensaje;
 
-		public Integer getGenreId() {
-			return this.GenreId;
-		}
-
-		public String Name;
-
-		public String getName() {
-			return this.Name;
-		}
-
-		private Integer readInteger(ObjectInputStream dis) throws IOException {
-			Integer intReturn;
-			int length = 0;
-			length = dis.readByte();
-			if (length == -1) {
-				intReturn = null;
-			} else {
-				intReturn = dis.readInt();
-			}
-			return intReturn;
-		}
-
-		private void writeInteger(Integer intNum, ObjectOutputStream dos) throws IOException {
-			if (intNum == null) {
-				dos.writeByte(-1);
-			} else {
-				dos.writeByte(0);
-				dos.writeInt(intNum);
-			}
+		public String getMensaje() {
+			return this.mensaje;
 		}
 
 		private String readString(ObjectInputStream dis) throws IOException {
@@ -340,15 +313,15 @@ public class Segundo_Job implements TalendJob {
 			if (length == -1) {
 				strReturn = null;
 			} else {
-				if (length > commonByteArray_TALEND_191203_01_Segundo_Job.length) {
-					if (length < 1024 && commonByteArray_TALEND_191203_01_Segundo_Job.length == 0) {
-						commonByteArray_TALEND_191203_01_Segundo_Job = new byte[1024];
+				if (length > commonByteArray_TALEND_191203_01_primer_job.length) {
+					if (length < 1024 && commonByteArray_TALEND_191203_01_primer_job.length == 0) {
+						commonByteArray_TALEND_191203_01_primer_job = new byte[1024];
 					} else {
-						commonByteArray_TALEND_191203_01_Segundo_Job = new byte[2 * length];
+						commonByteArray_TALEND_191203_01_primer_job = new byte[2 * length];
 					}
 				}
-				dis.readFully(commonByteArray_TALEND_191203_01_Segundo_Job, 0, length);
-				strReturn = new String(commonByteArray_TALEND_191203_01_Segundo_Job, 0, length, utf8Charset);
+				dis.readFully(commonByteArray_TALEND_191203_01_primer_job, 0, length);
+				strReturn = new String(commonByteArray_TALEND_191203_01_primer_job, 0, length, utf8Charset);
 			}
 			return strReturn;
 		}
@@ -365,15 +338,13 @@ public class Segundo_Job implements TalendJob {
 
 		public void readData(ObjectInputStream dis) {
 
-			synchronized (commonByteArrayLock_TALEND_191203_01_Segundo_Job) {
+			synchronized (commonByteArrayLock_TALEND_191203_01_primer_job) {
 
 				try {
 
 					int length = 0;
 
-					this.GenreId = readInteger(dis);
-
-					this.Name = readString(dis);
+					this.mensaje = readString(dis);
 
 				} catch (IOException e) {
 					throw new RuntimeException(e);
@@ -387,13 +358,9 @@ public class Segundo_Job implements TalendJob {
 		public void writeData(ObjectOutputStream dos) {
 			try {
 
-				// Integer
-
-				writeInteger(this.GenreId, dos);
-
 				// String
 
-				writeString(this.Name, dos);
+				writeString(this.mensaje, dos);
 
 			} catch (IOException e) {
 				throw new RuntimeException(e);
@@ -406,8 +373,7 @@ public class Segundo_Job implements TalendJob {
 			StringBuilder sb = new StringBuilder();
 			sb.append(super.toString());
 			sb.append("[");
-			sb.append("GenreId=" + String.valueOf(GenreId));
-			sb.append(",Name=" + Name);
+			sb.append("mensaje=" + mensaje);
 			sb.append("]");
 
 			return sb.toString();
@@ -416,18 +382,10 @@ public class Segundo_Job implements TalendJob {
 		public String toLogString() {
 			StringBuilder sb = new StringBuilder();
 
-			if (GenreId == null) {
+			if (mensaje == null) {
 				sb.append("<null>");
 			} else {
-				sb.append(GenreId);
-			}
-
-			sb.append("|");
-
-			if (Name == null) {
-				sb.append("<null>");
-			} else {
-				sb.append(Name);
+				sb.append(mensaje);
 			}
 
 			sb.append("|");
@@ -468,8 +426,8 @@ public class Segundo_Job implements TalendJob {
 
 	}
 
-	public void tFileInputDelimited_1Process(final java.util.Map<String, Object> globalMap) throws TalendException {
-		globalMap.put("tFileInputDelimited_1_SUBPROCESS_STATE", 0);
+	public void tFixedFlowInput_1Process(final java.util.Map<String, Object> globalMap) throws TalendException {
+		globalMap.put("tFixedFlowInput_1_SUBPROCESS_STATE", 0);
 
 		final boolean execStat = this.execStat;
 
@@ -565,313 +523,149 @@ public class Segundo_Job implements TalendJob {
 				 */
 
 				/**
-				 * [tFileInputDelimited_1 begin ] start
+				 * [tFixedFlowInput_1 begin ] start
 				 */
 
-				ok_Hash.put("tFileInputDelimited_1", false);
-				start_Hash.put("tFileInputDelimited_1", System.currentTimeMillis());
+				ok_Hash.put("tFixedFlowInput_1", false);
+				start_Hash.put("tFixedFlowInput_1", System.currentTimeMillis());
 
-				currentComponent = "tFileInputDelimited_1";
+				currentComponent = "tFixedFlowInput_1";
 
-				int tos_count_tFileInputDelimited_1 = 0;
+				int tos_count_tFixedFlowInput_1 = 0;
 
-				if (log.isDebugEnabled())
-					log.debug("tFileInputDelimited_1 - " + ("Start to work."));
-				if (log.isDebugEnabled()) {
-					class BytesLimit65535_tFileInputDelimited_1 {
-						public void limitLog4jByte() throws Exception {
-							StringBuilder log4jParamters_tFileInputDelimited_1 = new StringBuilder();
-							log4jParamters_tFileInputDelimited_1.append("Parameters:");
-							log4jParamters_tFileInputDelimited_1.append("FILENAME" + " = " + "\"C:/Talend/Genre.csv\"");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("CSV_OPTION" + " = " + "false");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("ROWSEPARATOR" + " = " + "\"\\n\"");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("FIELDSEPARATOR" + " = " + "\";\"");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("HEADER" + " = " + "1");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("FOOTER" + " = " + "0");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("LIMIT" + " = " + "");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("REMOVE_EMPTY_ROW" + " = " + "false");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("UNCOMPRESS" + " = " + "false");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("DIE_ON_ERROR" + " = " + "false");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("ADVANCED_SEPARATOR" + " = " + "false");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("RANDOM" + " = " + "false");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("TRIMALL" + " = " + "false");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append(
-									"TRIMSELECT" + " = " + "[{TRIM=" + ("false") + ", SCHEMA_COLUMN=" + ("GenreId")
-											+ "}, {TRIM=" + ("false") + ", SCHEMA_COLUMN=" + ("Name") + "}]");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("CHECK_FIELDS_NUM" + " = " + "false");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("CHECK_DATE" + " = " + "false");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("ENCODING" + " = " + "\"UTF-8\"");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("SPLITRECORD" + " = " + "false");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							log4jParamters_tFileInputDelimited_1.append("ENABLE_DECODE" + " = " + "false");
-							log4jParamters_tFileInputDelimited_1.append(" | ");
-							if (log.isDebugEnabled())
-								log.debug("tFileInputDelimited_1 - " + (log4jParamters_tFileInputDelimited_1));
-						}
-					}
-					new BytesLimit65535_tFileInputDelimited_1().limitLog4jByte();
-				}
 				if (enableLogStash) {
-					talendJobLog.addComponentMessage("tFileInputDelimited_1", "tFileInputDelimited");
+					talendJobLog.addComponentMessage("tFixedFlowInput_1", "tFixedFlowInput");
 					talendJobLogProcess(globalMap);
 				}
 
-				final routines.system.RowState rowstate_tFileInputDelimited_1 = new routines.system.RowState();
+				for (int i_tFixedFlowInput_1 = 0; i_tFixedFlowInput_1 < 1; i_tFixedFlowInput_1++) {
 
-				int nb_line_tFileInputDelimited_1 = 0;
-				org.talend.fileprocess.FileInputDelimited fid_tFileInputDelimited_1 = null;
-				int limit_tFileInputDelimited_1 = -1;
-				try {
+					row1.mensaje = "Hola";
 
-					Object filename_tFileInputDelimited_1 = "C:/Talend/Genre.csv";
-					if (filename_tFileInputDelimited_1 instanceof java.io.InputStream) {
+					/**
+					 * [tFixedFlowInput_1 begin ] stop
+					 */
 
-						int footer_value_tFileInputDelimited_1 = 0, random_value_tFileInputDelimited_1 = -1;
-						if (footer_value_tFileInputDelimited_1 > 0 || random_value_tFileInputDelimited_1 > 0) {
-							throw new java.lang.Exception(
-									"When the input source is a stream,footer and random shouldn't be bigger than 0.");
-						}
+					/**
+					 * [tFixedFlowInput_1 main ] start
+					 */
 
+					currentComponent = "tFixedFlowInput_1";
+
+					tos_count_tFixedFlowInput_1++;
+
+					/**
+					 * [tFixedFlowInput_1 main ] stop
+					 */
+
+					/**
+					 * [tFixedFlowInput_1 process_data_begin ] start
+					 */
+
+					currentComponent = "tFixedFlowInput_1";
+
+					/**
+					 * [tFixedFlowInput_1 process_data_begin ] stop
+					 */
+
+					/**
+					 * [tLogRow_1 main ] start
+					 */
+
+					currentComponent = "tLogRow_1";
+
+					// row1
+					// row1
+
+					if (execStat) {
+						runStat.updateStatOnConnection("row1" + iterateId, 1, 1);
 					}
-					try {
-						fid_tFileInputDelimited_1 = new org.talend.fileprocess.FileInputDelimited("C:/Talend/Genre.csv",
-								"UTF-8", ";", "\n", false, 1, 0, limit_tFileInputDelimited_1, -1, false);
-					} catch (java.lang.Exception e) {
 
-						log.error("tFileInputDelimited_1 - " + e.getMessage());
-
-						System.err.println(e.getMessage());
-
+					if (enableLogStash) {
+						runStat.logStatOnConnection("row1" + iterateId, 1, 1);
 					}
 
-					log.info("tFileInputDelimited_1 - Retrieving records from the datasource.");
-
-					while (fid_tFileInputDelimited_1 != null && fid_tFileInputDelimited_1.nextRecord()) {
-						rowstate_tFileInputDelimited_1.reset();
-
-						row1 = null;
-
-						boolean whetherReject_tFileInputDelimited_1 = false;
-						row1 = new row1Struct();
-						try {
-
-							int columnIndexWithD_tFileInputDelimited_1 = 0;
-
-							String temp = "";
-
-							columnIndexWithD_tFileInputDelimited_1 = 0;
-
-							temp = fid_tFileInputDelimited_1.get(columnIndexWithD_tFileInputDelimited_1);
-							if (temp.length() > 0) {
-
-								try {
-
-									row1.GenreId = ParserUtils.parseTo_Integer(temp);
-
-								} catch (java.lang.Exception ex_tFileInputDelimited_1) {
-									rowstate_tFileInputDelimited_1.setException(new RuntimeException(String.format(
-											"Couldn't parse value for column '%s' in '%s', value is '%s'. Details: %s",
-											"GenreId", "row1", temp, ex_tFileInputDelimited_1),
-											ex_tFileInputDelimited_1));
-								}
-
-							} else {
-
-								row1.GenreId = null;
-
-							}
-
-							columnIndexWithD_tFileInputDelimited_1 = 1;
-
-							row1.Name = fid_tFileInputDelimited_1.get(columnIndexWithD_tFileInputDelimited_1);
-
-							if (rowstate_tFileInputDelimited_1.getException() != null) {
-								throw rowstate_tFileInputDelimited_1.getException();
-							}
-
-						} catch (java.lang.Exception e) {
-							whetherReject_tFileInputDelimited_1 = true;
-
-							log.error("tFileInputDelimited_1 - " + e.getMessage());
-
-							System.err.println(e.getMessage());
-							row1 = null;
-
-						}
-
-						log.debug("tFileInputDelimited_1 - Retrieving the record "
-								+ fid_tFileInputDelimited_1.getRowNumber() + ".");
-
-						/**
-						 * [tFileInputDelimited_1 begin ] stop
-						 */
-
-						/**
-						 * [tFileInputDelimited_1 main ] start
-						 */
-
-						currentComponent = "tFileInputDelimited_1";
-
-						tos_count_tFileInputDelimited_1++;
-
-						/**
-						 * [tFileInputDelimited_1 main ] stop
-						 */
-
-						/**
-						 * [tFileInputDelimited_1 process_data_begin ] start
-						 */
-
-						currentComponent = "tFileInputDelimited_1";
-
-						/**
-						 * [tFileInputDelimited_1 process_data_begin ] stop
-						 */
-// Start of branch "row1"
-						if (row1 != null) {
-
-							/**
-							 * [tLogRow_1 main ] start
-							 */
-
-							currentComponent = "tLogRow_1";
-
-							// row1
-							// row1
-
-							if (execStat) {
-								runStat.updateStatOnConnection("row1" + iterateId, 1, 1);
-							}
-
-							if (enableLogStash) {
-								runStat.logStatOnConnection("row1" + iterateId, 1, 1);
-							}
-
-							if (log.isTraceEnabled()) {
-								log.trace("row1 - " + (row1 == null ? "" : row1.toLogString()));
-							}
+					if (log.isTraceEnabled()) {
+						log.trace("row1 - " + (row1 == null ? "" : row1.toLogString()));
+					}
 
 ///////////////////////		
 
-							strBuffer_tLogRow_1 = new StringBuilder();
+					strBuffer_tLogRow_1 = new StringBuilder();
 
-							if (row1.GenreId != null) { //
+					if (row1.mensaje != null) { //
 
-								strBuffer_tLogRow_1.append(String.valueOf(row1.GenreId));
+						strBuffer_tLogRow_1.append(String.valueOf(row1.mensaje));
 
-							} //
+					} //
 
-							strBuffer_tLogRow_1.append("|");
-
-							if (row1.Name != null) { //
-
-								strBuffer_tLogRow_1.append(String.valueOf(row1.Name));
-
-							} //
-
-							if (globalMap.get("tLogRow_CONSOLE") != null) {
-								consoleOut_tLogRow_1 = (java.io.PrintStream) globalMap.get("tLogRow_CONSOLE");
-							} else {
-								consoleOut_tLogRow_1 = new java.io.PrintStream(
-										new java.io.BufferedOutputStream(System.out));
-								globalMap.put("tLogRow_CONSOLE", consoleOut_tLogRow_1);
-							}
-							log.info("tLogRow_1 - Content of row " + (nb_line_tLogRow_1 + 1) + ": "
-									+ strBuffer_tLogRow_1.toString());
-							consoleOut_tLogRow_1.println(strBuffer_tLogRow_1.toString());
-							consoleOut_tLogRow_1.flush();
-							nb_line_tLogRow_1++;
+					if (globalMap.get("tLogRow_CONSOLE") != null) {
+						consoleOut_tLogRow_1 = (java.io.PrintStream) globalMap.get("tLogRow_CONSOLE");
+					} else {
+						consoleOut_tLogRow_1 = new java.io.PrintStream(new java.io.BufferedOutputStream(System.out));
+						globalMap.put("tLogRow_CONSOLE", consoleOut_tLogRow_1);
+					}
+					log.info("tLogRow_1 - Content of row " + (nb_line_tLogRow_1 + 1) + ": "
+							+ strBuffer_tLogRow_1.toString());
+					consoleOut_tLogRow_1.println(strBuffer_tLogRow_1.toString());
+					consoleOut_tLogRow_1.flush();
+					nb_line_tLogRow_1++;
 //////
 
 //////                    
 
 ///////////////////////    			
 
-							tos_count_tLogRow_1++;
+					tos_count_tLogRow_1++;
 
-							/**
-							 * [tLogRow_1 main ] stop
-							 */
+					/**
+					 * [tLogRow_1 main ] stop
+					 */
 
-							/**
-							 * [tLogRow_1 process_data_begin ] start
-							 */
+					/**
+					 * [tLogRow_1 process_data_begin ] start
+					 */
 
-							currentComponent = "tLogRow_1";
+					currentComponent = "tLogRow_1";
 
-							/**
-							 * [tLogRow_1 process_data_begin ] stop
-							 */
+					/**
+					 * [tLogRow_1 process_data_begin ] stop
+					 */
 
-							/**
-							 * [tLogRow_1 process_data_end ] start
-							 */
+					/**
+					 * [tLogRow_1 process_data_end ] start
+					 */
 
-							currentComponent = "tLogRow_1";
+					currentComponent = "tLogRow_1";
 
-							/**
-							 * [tLogRow_1 process_data_end ] stop
-							 */
+					/**
+					 * [tLogRow_1 process_data_end ] stop
+					 */
 
-						} // End of branch "row1"
+					/**
+					 * [tFixedFlowInput_1 process_data_end ] start
+					 */
 
-						/**
-						 * [tFileInputDelimited_1 process_data_end ] start
-						 */
+					currentComponent = "tFixedFlowInput_1";
 
-						currentComponent = "tFileInputDelimited_1";
+					/**
+					 * [tFixedFlowInput_1 process_data_end ] stop
+					 */
 
-						/**
-						 * [tFileInputDelimited_1 process_data_end ] stop
-						 */
+					/**
+					 * [tFixedFlowInput_1 end ] start
+					 */
 
-						/**
-						 * [tFileInputDelimited_1 end ] start
-						 */
+					currentComponent = "tFixedFlowInput_1";
 
-						currentComponent = "tFileInputDelimited_1";
-
-					}
-				} finally {
-					if (!((Object) ("C:/Talend/Genre.csv") instanceof java.io.InputStream)) {
-						if (fid_tFileInputDelimited_1 != null) {
-							fid_tFileInputDelimited_1.close();
-						}
-					}
-					if (fid_tFileInputDelimited_1 != null) {
-						globalMap.put("tFileInputDelimited_1_NB_LINE", fid_tFileInputDelimited_1.getRowNumber());
-
-						log.info("tFileInputDelimited_1 - Retrieved records count: "
-								+ fid_tFileInputDelimited_1.getRowNumber() + ".");
-
-					}
 				}
+				globalMap.put("tFixedFlowInput_1_NB_LINE", 1);
 
-				if (log.isDebugEnabled())
-					log.debug("tFileInputDelimited_1 - " + ("Done."));
-
-				ok_Hash.put("tFileInputDelimited_1", true);
-				end_Hash.put("tFileInputDelimited_1", System.currentTimeMillis());
+				ok_Hash.put("tFixedFlowInput_1", true);
+				end_Hash.put("tFixedFlowInput_1", System.currentTimeMillis());
 
 				/**
-				 * [tFileInputDelimited_1 end ] stop
+				 * [tFixedFlowInput_1 end ] stop
 				 */
 
 				/**
@@ -899,8 +693,8 @@ public class Segundo_Job implements TalendJob {
 
 						RunStat.StatBean talend_statebean = runStat.logStatOnConnection("row1" + iterateId, 2, 0);
 
-						talendJobLog.addConnectionMessage("tFileInputDelimited_1", "tFileInputDelimited", false,
-								"output", "row1", talend_statebean.getNbLine(), talend_statebean.getStartTime(),
+						talendJobLog.addConnectionMessage("tFixedFlowInput_1", "tFixedFlowInput", false, "output",
+								"row1", talend_statebean.getNbLine(), talend_statebean.getStartTime(),
 								talend_statebean.getEndTime());
 
 						talendJobLog.addConnectionMessage("tLogRow_1", "tLogRow", true, "input", "row1",
@@ -942,13 +736,13 @@ public class Segundo_Job implements TalendJob {
 			try {
 
 				/**
-				 * [tFileInputDelimited_1 finally ] start
+				 * [tFixedFlowInput_1 finally ] start
 				 */
 
-				currentComponent = "tFileInputDelimited_1";
+				currentComponent = "tFixedFlowInput_1";
 
 				/**
-				 * [tFileInputDelimited_1 finally ] stop
+				 * [tFixedFlowInput_1 finally ] stop
 				 */
 
 				/**
@@ -969,7 +763,7 @@ public class Segundo_Job implements TalendJob {
 			resourceMap = null;
 		}
 
-		globalMap.put("tFileInputDelimited_1_SUBPROCESS_STATE", 1);
+		globalMap.put("tFixedFlowInput_1_SUBPROCESS_STATE", 1);
 	}
 
 	public void talendJobLogProcess(final java.util.Map<String, Object> globalMap) throws TalendException {
@@ -1176,11 +970,11 @@ public class Segundo_Job implements TalendJob {
 	public String status = "";
 
 	public static void main(String[] args) {
-		final Segundo_Job Segundo_JobClass = new Segundo_Job();
+		final primer_job primer_jobClass = new primer_job();
 
-		int exitCode = Segundo_JobClass.runJobInTOS(args);
+		int exitCode = primer_jobClass.runJobInTOS(args);
 		if (exitCode == 0) {
-			log.info("TalendJob: 'Segundo_Job' - Done.");
+			log.info("TalendJob: 'primer_job' - Done.");
 		}
 
 		System.exit(exitCode);
@@ -1234,7 +1028,7 @@ public class Segundo_Job implements TalendJob {
 			}
 			org.apache.log4j.Logger.getRootLogger().setLevel(log.getLevel());
 		}
-		log.info("TalendJob: 'Segundo_Job' - Start.");
+		log.info("TalendJob: 'primer_job' - Start.");
 
 		if (enableLogStash) {
 			java.util.Properties properties_talendJobLog = new java.util.Properties();
@@ -1285,10 +1079,10 @@ public class Segundo_Job implements TalendJob {
 		try {
 			// call job/subjob with an existing context, like: --context=production. if
 			// without this parameter, there will use the default context instead.
-			java.io.InputStream inContext = Segundo_Job.class.getClassLoader()
-					.getResourceAsStream("talend_191203_01/segundo_job_0_1/contexts/" + contextStr + ".properties");
+			java.io.InputStream inContext = primer_job.class.getClassLoader()
+					.getResourceAsStream("talend_191203_01/primer_job_0_1/contexts/" + contextStr + ".properties");
 			if (inContext == null) {
-				inContext = Segundo_Job.class.getClassLoader()
+				inContext = primer_job.class.getClassLoader()
 						.getResourceAsStream("config/contexts/" + contextStr + ".properties");
 			}
 			if (inContext != null) {
@@ -1378,14 +1172,14 @@ public class Segundo_Job implements TalendJob {
 
 		try {
 			errorCode = null;
-			tFileInputDelimited_1Process(globalMap);
+			tFixedFlowInput_1Process(globalMap);
 			if (!"failure".equals(status)) {
 				status = "end";
 			}
-		} catch (TalendException e_tFileInputDelimited_1) {
-			globalMap.put("tFileInputDelimited_1_SUBPROCESS_STATE", -1);
+		} catch (TalendException e_tFixedFlowInput_1) {
+			globalMap.put("tFixedFlowInput_1_SUBPROCESS_STATE", -1);
 
-			e_tFileInputDelimited_1.printStackTrace();
+			e_tFixedFlowInput_1.printStackTrace();
 
 		}
 
@@ -1399,7 +1193,7 @@ public class Segundo_Job implements TalendJob {
 
 		endUsedMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		if (false) {
-			System.out.println((endUsedMemory - startUsedMemory) + " bytes memory increase when running : Segundo_Job");
+			System.out.println((endUsedMemory - startUsedMemory) + " bytes memory increase when running : primer_job");
 		}
 		if (enableLogStash) {
 			talendJobLog.addJobEndMessage(startTime, end, status);
@@ -1549,6 +1343,6 @@ public class Segundo_Job implements TalendJob {
 	ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- * 53805 characters generated by Talend Cloud Big Data on the 4 de diciembre de
- * 2019 15:02:25 CET
+ * 44255 characters generated by Talend Cloud Big Data on the 4 de diciembre de
+ * 2019 15:02:03 CET
  ************************************************************************************************/
